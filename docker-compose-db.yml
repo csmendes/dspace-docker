@@ -1,0 +1,17 @@
+version: '3.6'
+services: 
+  postgres:
+    image: postgres
+    restart: always
+    environment: 
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DATABASE=dspace
+      - POSTGRES_USER=dspace
+      - POSTGRES_PASSWORD=dspace
+    volumes: 
+      - ./postgres_data/:/var/lib/postgres_data/.
+    networks: 
+      - data
+networks: 
+  data:
+    driver: bridge

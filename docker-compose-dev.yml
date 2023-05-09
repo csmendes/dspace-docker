@@ -1,0 +1,26 @@
+version: '3.6'
+services: 
+  web:
+    build: .
+    restart: always
+    # volumes: 
+    # env_file: 
+    environment: 
+      VIRTUAL_HOST: localhost
+      VIRTUAL_PORT: 8080
+    ports: 
+      - 8080:8080
+  postgres:
+    image: postgres
+    restart: always
+    environment: 
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DATABASE=dspace
+      - POSTGRES_USER=dspace
+      - POSTGRES_PASSWORD=dspace
+    volumes: 
+      - ./postgres_data/:/var/lib/postgres_data/
+      - ./db/:/docker-entrypoint-initdb.d
+
+volumes: 
+  postgres:
